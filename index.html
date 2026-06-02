@@ -3,262 +3,981 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Savia Territorial · Consultoría Ambiental</title>
-<meta name="description" content="Consultoría ambiental con especialización en geomática aplicada (SIG y teledetección). Córdoba, Argentina. EIA, bosque nativo, auditorías, municipios y más.">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Atlas Ambiental · Consultora Ambiental · Córdoba, Argentina</title>
+<meta name="description" content="Consultora ambiental multidisciplinar con especialización en geomática aplicada (SIG y teledetección). Córdoba, Argentina. EIA, bosque nativo, huella de carbono, municipios y más.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { overflow-x: hidden; }
-  :root {
-    --verde: #2D6A4F; --verde-medio: #40916C; --verde-claro: #74C69D;
-    --verde-suave: #D8F3DC; --tierra: #6B4226; --tierra-claro: #A67C52;
-    --crema: #F8F4EE; --crema-oscura: #EDE8DE; --texto: #1C2B20;
-    --texto-medio: #4A5E52; --texto-claro: #8A9E92; --acento: #B5C99A;
-  }
-  html { scroll-behavior: smooth; }
-  body { font-family: 'Nunito', sans-serif; background: var(--crema); color: var(--texto); line-height: 1.7; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(248,244,238,0.96); backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--crema-oscura);
-    padding: 0 5%; display: flex; align-items: center; justify-content: space-between; height: 68px;
-  }
-  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-  .logo-text { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 600; color: var(--verde); line-height: 1.1; letter-spacing: 0.5px; }
-  .logo-sub { font-family: 'Nunito', sans-serif; font-size: 9px; letter-spacing: 3px; color: var(--tierra-claro); text-transform: uppercase; font-weight: 500; }
-  .nav-links { display: flex; gap: 32px; list-style: none; }
-  .nav-links a { font-size: 13px; color: var(--texto-medio); text-decoration: none; font-weight: 400; letter-spacing: 0.3px; transition: color 0.2s; }
-  .nav-links a:hover { color: var(--verde); }
-  .nav-cta { background: var(--verde); color: white; padding: 9px 22px; border-radius: 24px; font-size: 13px; font-weight: 500; text-decoration: none; letter-spacing: 0.3px; transition: background 0.2s; }
-  .nav-cta:hover { background: var(--verde-medio); }
-  .nav-hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 36px; height: 36px; cursor: pointer; padding: 4px; border: none; background: none; }
-  .nav-hamburger span { display: block; height: 2px; background: var(--verde); border-radius: 2px; transition: all 0.3s; }
-  .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
-  .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-  .mobile-menu { display: none; position: fixed; top: 68px; left: 0; right: 0; background: rgba(248,244,238,0.98); backdrop-filter: blur(12px); border-bottom: 1px solid var(--crema-oscura); padding: 20px 6%; z-index: 99; flex-direction: column; gap: 0; }
-  .mobile-menu.open { display: flex; }
-  .mobile-menu a { font-size: 16px; color: var(--texto-medio); text-decoration: none; font-weight: 400; padding: 14px 0; border-bottom: 1px solid var(--crema-oscura); transition: color 0.2s; }
-  .mobile-menu a:last-child { border-bottom: none; padding-bottom: 4px; }
-  .mobile-menu a:hover { color: var(--verde); }
-  .mobile-menu .mobile-cta { color: var(--verde); font-weight: 600; }
+:root {
+  /* Paleta principal — familia oliva */
+  --oliva-profundo: #3B3D1E;
+  --oliva-oscuro: #5C6130;
+  --oliva-medio: #7A8040;
+  --oliva-vivo: #9BA34A;
+  --oliva-claro: #C8D080;
+  /* Acentos */
+  --tierra: #8B6914;
+  --tierra-claro: #A8862A;
+  --pizarra: #4A6E7A;
+  --pizarra-claro: #6B8F9C;
+  /* Bases */
+  --pergamino: #F5F2E0;
+  --pergamino-oscuro: #EAE5CC;
+  --pergamino-medio: #DDD7BE;
+  --blanco: #FFFFFF;
+  /* Texto */
+  --texto: #1C2210;
+  --texto-medio: #4A4E28;
+  --texto-claro: #7A7E52;
+  /* Sombras */
+  --sombra-sm: 0 2px 12px rgba(59,61,30,0.08);
+  --sombra-md: 0 8px 32px rgba(59,61,30,0.12);
+  --sombra-lg: 0 20px 60px rgba(59,61,30,0.16);
+}
 
-  /* HERO */
-  #inicio {
-    min-height: 100vh; display: flex; align-items: center;
-    background: linear-gradient(160deg, var(--crema) 55%, var(--verde-suave) 100%);
-    padding: 120px 8% 90px; position: relative; overflow: hidden;
-  }
-  .hero-bg-circle { position: absolute; right: -80px; top: 50%; transform: translateY(-50%); width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(circle, rgba(116,198,157,0.15) 0%, transparent 70%); pointer-events: none; }
-  .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1100px; margin: 0 auto; width: 100%; }
-  .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--verde-suave); border: 1px solid var(--acento); color: var(--verde); padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 500; margin-bottom: 24px; letter-spacing: 0.5px; }
-  .hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--verde); border-radius: 50%; }
-  h1 { font-family: 'Cormorant Garamond', serif; font-size: 56px; line-height: 1.1; font-weight: 600; color: var(--texto); margin-bottom: 20px; }
-  h1 span { color: var(--verde); font-style: italic; }
-  .hero-desc { font-size: 16px; color: var(--texto-medio); margin-bottom: 36px; max-width: 440px; font-weight: 300; line-height: 1.8; }
-  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
-  .btn-primary { background: var(--verde); color: white; padding: 13px 28px; border-radius: 28px; font-size: 14px; font-weight: 500; text-decoration: none; transition: all 0.2s; cursor: pointer; border: none; font-family: 'Nunito', sans-serif; letter-spacing: 0.3px; display: inline-block; }
-  .btn-primary:hover { background: var(--verde-medio); transform: translateY(-1px); }
-  .btn-outline { background: transparent; color: var(--verde); padding: 12px 28px; border-radius: 28px; font-size: 14px; font-weight: 500; text-decoration: none; border: 1.5px solid var(--verde); transition: all 0.2s; letter-spacing: 0.3px; display: inline-block; }
-  .btn-outline:hover { background: var(--verde-suave); }
-  .hero-stats { display: flex; gap: 32px; margin-top: 48px; }
-  .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 36px; color: var(--verde); font-weight: 600; line-height: 1; }
-  .stat-label { font-size: 11px; color: var(--texto-claro); letter-spacing: 1px; margin-top: 4px; text-transform: uppercase; font-weight: 500; }
-  .hero-visual { background: white; border-radius: 24px; padding: 32px; border: 1px solid var(--crema-oscura); box-shadow: 0 20px 60px rgba(45,106,79,0.08); }
-  .hero-map-placeholder { background: var(--verde-suave); border-radius: 16px; height: 220px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 12px; margin-bottom: 20px; }
-  .hero-map-label { font-size: 13px; font-weight: 500; color: var(--verde); }
-  .hero-map-sub { font-size: 12px; color: var(--verde-medio); font-weight: 300; }
-  .hero-chips { display: flex; flex-wrap: wrap; gap: 8px; }
-  .chip { background: var(--crema); border: 1px solid var(--crema-oscura); border-radius: 20px; padding: 5px 13px; font-size: 12px; color: var(--texto-medio); font-weight: 400; }
-  .chip-green { background: var(--verde-suave); border-color: var(--acento); color: var(--verde); }
+html { scroll-behavior: smooth; }
 
-  /* SECCIONES */
-  section { padding: 90px 8%; }
-  .section-tag { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--tierra-claro); font-weight: 600; margin-bottom: 12px; }
-  h2 { font-family: 'Cormorant Garamond', serif; font-size: 44px; font-weight: 600; color: var(--texto); margin-bottom: 16px; line-height: 1.15; }
-  h2 em { color: var(--verde); font-style: italic; }
-  .section-header { max-width: 600px; margin: 0 auto 56px; text-align: center; }
-  .section-header p { font-size: 15px; color: var(--texto-medio); font-weight: 300; margin-top: 12px; line-height: 1.8; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--pergamino);
+  color: var(--texto);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
 
-  /* SOBRE */
-  #sobre { background: white; }
-  .sobre-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 70px; align-items: center; max-width: 1100px; margin: 0 auto; }
-  .sobre-foto-wrap { position: relative; }
-  .sobre-foto { background: var(--verde-suave); border-radius: 20px; height: 420px; display: flex; align-items: center; justify-content: center; }
-  .sobre-badge { position: absolute; bottom: -16px; right: -16px; background: white; border: 1px solid var(--crema-oscura); border-radius: 14px; padding: 14px 18px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
-  .sobre-badge-title { font-size: 13px; font-weight: 600; color: var(--texto); }
-  .sobre-badge-sub { font-size: 11px; color: var(--texto-claro); margin-top: 2px; font-weight: 300; }
-  .sobre-texto p { font-size: 15px; color: var(--texto-medio); margin-bottom: 16px; font-weight: 300; line-height: 1.85; }
-  .sobre-texto strong { color: var(--texto); font-weight: 600; }
-  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 28px; }
-  .skill-item { display: flex; align-items: flex-start; gap: 10px; background: var(--crema); border-radius: 10px; padding: 12px 14px; }
-  .skill-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--verde); margin-top: 8px; flex-shrink: 0; }
-  .skill-text { font-size: 13px; color: var(--texto-medio); font-weight: 400; }
+/* ─── NAVEGACIÓN ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  background: rgba(245,242,224,0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--pergamino-oscuro);
+  padding: 0 5%;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 70px;
+  transition: box-shadow 0.3s;
+}
+nav.scrolled { box-shadow: var(--sombra-md); }
 
-  /* SERVICIOS */
-  #servicios { background: var(--crema); }
-  .servicios-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1100px; margin: 0 auto; }
-  .servicio-card { background: white; border-radius: 20px; padding: 32px 28px; border: 1px solid var(--crema-oscura); transition: all 0.3s; }
-  .servicio-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(45,106,79,0.1); border-color: var(--acento); }
-  .serv-icon { width: 50px; height: 50px; border-radius: 14px; background: var(--verde-suave); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
-  .serv-icon svg { width: 22px; height: 22px; }
-  .serv-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 600; color: var(--texto); margin-bottom: 10px; line-height: 1.2; }
-  .serv-desc { font-size: 13px; color: var(--texto-medio); line-height: 1.75; font-weight: 300; }
-  .serv-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
-  .serv-tag { background: var(--crema); border: 1px solid var(--crema-oscura); border-radius: 12px; padding: 4px 10px; font-size: 11px; color: var(--texto-medio); }
+.nav-logo {
+  display: flex; align-items: center; gap: 12px;
+  text-decoration: none; flex-shrink: 0;
+}
+.nav-logo-text { line-height: 1.15; }
+.nav-logo-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px; font-weight: 600;
+  color: var(--oliva-profundo);
+  letter-spacing: 0.5px;
+  display: block;
+}
+.nav-logo-sub {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 8.5px; font-weight: 400;
+  letter-spacing: 3px;
+  color: var(--tierra);
+  text-transform: uppercase;
+  display: block;
+}
 
-  /* CLIENTES */
-  #clientes { background: white; padding: 80px 8%; }
-  .clientes-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; max-width: 1100px; margin: 0 auto; }
-  .cliente-card { background: var(--crema); border-radius: 16px; padding: 24px 20px; text-align: center; border: 1px solid var(--crema-oscura); transition: all 0.2s; }
-  .cliente-card:hover { background: var(--verde-suave); border-color: var(--acento); }
-  .cliente-icono { font-size: 26px; margin-bottom: 12px; }
-  .cliente-tipo { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 600; color: var(--texto); margin-bottom: 6px; }
-  .cliente-desc { font-size: 12px; color: var(--texto-claro); font-weight: 300; line-height: 1.6; }
+.nav-links {
+  display: flex; gap: 30px; list-style: none;
+}
+.nav-links a {
+  font-size: 13px; font-weight: 400;
+  color: var(--texto-medio);
+  text-decoration: none;
+  letter-spacing: 0.3px;
+  transition: color 0.2s;
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute; bottom: -3px; left: 0; right: 0;
+  height: 1.5px;
+  background: var(--oliva-vivo);
+  transform: scaleX(0);
+  transition: transform 0.25s;
+}
+.nav-links a:hover { color: var(--oliva-oscuro); }
+.nav-links a:hover::after { transform: scaleX(1); }
 
-  /* GEOMATICA */
-  #geomatica { background: var(--verde); overflow: hidden; }
-  .geo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; max-width: 1100px; margin: 0 auto; }
-  .geo-tag { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--verde-claro); font-weight: 600; margin-bottom: 12px; }
-  .geo-title { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-weight: 600; color: white; margin-bottom: 16px; line-height: 1.15; }
-  .geo-desc { font-size: 15px; color: rgba(255,255,255,0.72); font-weight: 300; margin-bottom: 28px; line-height: 1.8; }
-  .geo-items { display: flex; flex-direction: column; gap: 14px; }
-  .geo-item { display: flex; align-items: center; gap: 12px; }
-  .geo-bullet { width: 6px; height: 6px; border-radius: 50%; background: var(--verde-claro); flex-shrink: 0; }
-  .geo-item-text { font-size: 14px; color: rgba(255,255,255,0.82); font-weight: 300; }
-  .geo-visual { background: rgba(255,255,255,0.09); border-radius: 20px; padding: 28px; border: 1px solid rgba(255,255,255,0.18); min-width: 0; }
-  .geo-layers { display: flex; flex-direction: column; gap: 10px; }
-  .geo-layer { display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.07); border-radius: 10px; padding: 12px 16px; border: 1px solid rgba(255,255,255,0.1); min-width: 0; }
-  .layer-color { width: 11px; height: 11px; border-radius: 3px; flex-shrink: 0; }
-  .layer-name { font-size: 13px; color: rgba(255,255,255,0.82); font-weight: 300; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .layer-type { font-size: 11px; color: rgba(255,255,255,0.4); margin-left: auto; letter-spacing: 0.5px; flex-shrink: 0; }
+.nav-cta {
+  background: var(--oliva-oscuro);
+  color: var(--pergamino);
+  padding: 9px 22px;
+  border-radius: 2px;
+  font-size: 12px; font-weight: 500;
+  text-decoration: none;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: background 0.2s, transform 0.2s;
+}
+.nav-cta:hover { background: var(--oliva-profundo); transform: translateY(-1px); }
 
-  /* CONTACTO */
-  #contacto { background: var(--crema); }
-  .contacto-wrap { max-width: 700px; margin: 0 auto; }
-  .contacto-form { background: white; border-radius: 24px; padding: 44px; border: 1px solid var(--crema-oscura); }
-  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-  .form-group { display: flex; flex-direction: column; gap: 6px; }
-  .form-group.full { grid-column: 1 / -1; }
-  label { font-size: 12px; font-weight: 600; color: var(--texto-medio); letter-spacing: 0.5px; text-transform: uppercase; }
-  input, select, textarea { border: 1.5px solid var(--crema-oscura); border-radius: 10px; padding: 12px 14px; font-size: 14px; color: var(--texto); font-family: 'Nunito', sans-serif; background: var(--crema); transition: border-color 0.2s; outline: none; font-weight: 300; width: 100%; }
-  input:focus, select:focus, textarea:focus { border-color: var(--verde); background: white; }
-  textarea { resize: vertical; min-height: 120px; }
-  .form-submit { background: var(--verde); color: white; border: none; padding: 15px 32px; border-radius: 28px; font-size: 14px; font-weight: 500; cursor: pointer; width: 100%; margin-top: 8px; transition: background 0.2s; font-family: 'Nunito', sans-serif; letter-spacing: 0.5px; }
-  .form-submit:hover { background: var(--verde-medio); }
-  .form-submit:disabled { background: var(--texto-claro); cursor: not-allowed; }
-  .form-note { font-size: 12px; color: var(--texto-claro); text-align: center; margin-top: 12px; font-weight: 300; }
-  .contacto-info { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
-  .info-item { background: white; border-radius: 14px; padding: 20px; text-align: center; border: 1px solid var(--crema-oscura); }
-  .info-icon { width: 40px; height: 40px; background: var(--verde-suave); border-radius: 50%; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; }
-  .info-icon svg { width: 18px; height: 18px; }
-  .info-label { font-size: 11px; color: var(--texto-claro); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
-  .info-val { font-size: 13px; font-weight: 500; color: var(--texto); }
-  .info-val a { color: var(--texto); text-decoration: none; }
-  .info-val a:hover { color: var(--verde); }
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px; height: 36px;
+  cursor: pointer; padding: 4px;
+  border: none; background: none;
+}
+.nav-hamburger span {
+  display: block; height: 1.5px;
+  background: var(--oliva-profundo);
+  transition: all 0.3s;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
-  /* ESTADOS FORMULARIO */
-  .form-sending { display: none; text-align: center; padding: 20px 0; }
-  .form-success { display: none; text-align: center; padding: 40px; }
-  .form-success .check { width: 56px; height: 56px; background: var(--verde-suave); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
-  .form-success h3 { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: var(--verde); margin-bottom: 8px; }
-  .form-success p { font-size: 14px; color: var(--texto-medio); font-weight: 300; }
-  .form-error { display: none; background: #fff0f0; border: 1px solid #ffd0d0; border-radius: 10px; padding: 14px; margin-top: 12px; font-size: 13px; color: #c0392b; text-align: center; }
+.mobile-menu {
+  display: none;
+  position: fixed; top: 70px; left: 0; right: 0;
+  background: rgba(245,242,224,0.98);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--pergamino-oscuro);
+  padding: 16px 6% 24px;
+  z-index: 199;
+  flex-direction: column;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  font-size: 15px; font-weight: 400;
+  color: var(--texto-medio);
+  text-decoration: none;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--pergamino-oscuro);
+  transition: color 0.2s;
+}
+.mobile-menu a:last-child { border-bottom: none; color: var(--oliva-oscuro); font-weight: 500; }
+.mobile-menu a:hover { color: var(--oliva-oscuro); }
 
-  /* FOOTER */
-  footer { background: var(--texto); color: rgba(255,255,255,0.7); padding: 48px 8% 32px; }
-  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; max-width: 1100px; margin: 0 auto 40px; }
-  .footer-logo-text { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 600; color: var(--verde-claro); line-height: 1.1; }
-  .footer-logo-sub { font-size: 9px; letter-spacing: 3px; color: rgba(255,255,255,0.35); text-transform: uppercase; margin-top: 2px; }
-  .footer-desc { font-size: 13px; color: rgba(255,255,255,0.45); margin-top: 14px; line-height: 1.75; max-width: 280px; font-weight: 300; }
-  .footer-col h4 { font-size: 11px; font-weight: 600; color: white; margin-bottom: 16px; letter-spacing: 2px; text-transform: uppercase; }
-  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-  .footer-col ul a { font-size: 13px; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; font-weight: 300; }
-  .footer-col ul a:hover { color: var(--verde-claro); }
-  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: 0 auto; flex-wrap: wrap; gap: 8px; }
-  .footer-bottom span { font-size: 12px; color: rgba(255,255,255,0.25); font-weight: 300; }
+/* ─── HERO ─── */
+#inicio {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  background: linear-gradient(150deg, var(--pergamino) 50%, #E8E3C8 100%);
+  padding: 120px 8% 90px;
+  position: relative; overflow: hidden;
+}
 
-  /* RESPONSIVE — TABLET (≤900px) */
-  @media (max-width: 900px) {
-    .hero-grid, .sobre-grid, .geo-grid { grid-template-columns: 1fr; gap: 40px; }
-    .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
-    .footer-grid > div:first-child { grid-column: 1 / -1; }
-    .servicios-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
-    .clientes-grid { grid-template-columns: repeat(2, 1fr); }
-    h1 { font-size: 40px; }
-    h2 { font-size: 34px; }
-    .nav-links { display: none; }
-    .nav-cta { display: none; }
-    .nav-hamburger { display: flex; }
-    .sobre-foto { height: 280px; }
-    .sobre-badge { position: static; margin-top: 16px; }
-    #inicio { padding: 100px 6% 70px; min-height: auto; }
-    .hero-visual { display: none; }
-    .hero-stats { flex-wrap: wrap; gap: 24px; margin-top: 36px; }
-    .geo-grid { grid-template-columns: 1fr; gap: 36px; }
-    .geo-title { font-size: 34px; }
-    .geo-visual { width: 100%; box-sizing: border-box; }
-    section { padding: 72px 6%; }
-    #sobre { padding: 72px 6% !important; }
-    .skills-grid { grid-template-columns: 1fr 1fr; }
-    .contacto-info { grid-template-columns: repeat(3, 1fr); }
-  }
+.hero-grain {
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none; opacity: 0.6;
+}
 
-  /* RESPONSIVE — MÓVIL GRANDE (≤640px) */
-  @media (max-width: 640px) {
-    h1 { font-size: 34px; }
-    h2 { font-size: 28px; }
-    .servicios-grid { grid-template-columns: 1fr; gap: 14px; }
-    .clientes-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    .footer-grid { grid-template-columns: 1fr; gap: 28px; }
-    .hero-stats { gap: 16px; }
-    .stat-num { font-size: 26px; }
-    .hero-badge { font-size: 11px; padding: 5px 11px; }
-    .hero-desc { font-size: 15px; }
-    .hero-btns { flex-direction: column; align-items: flex-start; }
-    .btn-primary, .btn-outline { width: 100%; text-align: center; }
-    section { padding: 56px 5%; }
-    #sobre { padding: 56px 5% !important; }
-    #inicio { padding: 90px 5% 56px; }
-    .sobre-foto { height: 220px; }
-    .sobre-foto svg { width: 90px; height: 90px; }
-    .skills-grid { grid-template-columns: 1fr; gap: 8px; }
-    .geo-title { font-size: 28px; }
-    .geo-desc { font-size: 14px; }
-    .geo-layers { gap: 8px; }
-    .geo-layer { padding: 10px 12px; gap: 8px; }
-    .layer-name { font-size: 12px; }
-    .geo-visual { padding: 20px 16px; }
-    .contacto-form { padding: 24px 16px; }
-    .form-grid { grid-template-columns: 1fr; }
-    .form-group.full { grid-column: 1; }
-    .contacto-info { grid-template-columns: 1fr; gap: 10px; }
-    .footer-bottom { flex-direction: column; text-align: center; gap: 6px; }
-    .section-header { margin-bottom: 36px; }
-    .section-header p { font-size: 14px; }
-  }
+.hero-accent-circle {
+  position: absolute;
+  right: -120px; top: 50%; transform: translateY(-50%);
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(155,163,74,0.12) 0%, transparent 65%);
+  pointer-events: none;
+}
 
-  /* RESPONSIVE — MÓVIL PEQUEÑO (≤400px) */
-  @media (max-width: 400px) {
-    h1 { font-size: 30px; }
-    h2 { font-size: 26px; }
-    .clientes-grid { grid-template-columns: 1fr; }
-    nav { padding: 0 4%; height: 60px; }
-    .mobile-menu { top: 60px; }
-    .logo-text { font-size: 17px; }
-    #inicio { padding: 80px 4% 48px; }
-    section { padding: 48px 4%; }
-    #sobre { padding: 48px 4% !important; }
-    .hero-stats { flex-direction: column; gap: 12px; }
-    .stat-item { display: flex; align-items: baseline; gap: 10px; }
-    .stat-label { font-size: 12px; }
-    .contacto-form { padding: 20px 14px; }
-    .servicio-card { padding: 24px 20px; }
-    .cliente-card { padding: 18px 14px; }
-    .geo-desc { font-size: 14px; }
-  }
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
+  max-width: 1140px; margin: 0 auto; width: 100%;
+  position: relative; z-index: 1;
+}
+
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: transparent;
+  border: 1px solid var(--oliva-medio);
+  color: var(--oliva-medio);
+  padding: 5px 13px; border-radius: 2px;
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.hero-eyebrow::before {
+  content: '';
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--oliva-vivo);
+}
+
+h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 58px; line-height: 1.07;
+  font-weight: 600; color: var(--oliva-profundo);
+  margin-bottom: 22px;
+  letter-spacing: -0.5px;
+}
+h1 em {
+  color: var(--oliva-vivo);
+  font-style: italic;
+}
+
+.hero-desc {
+  font-size: 15px; font-weight: 300;
+  color: var(--texto-medio);
+  margin-bottom: 38px;
+  max-width: 460px;
+  line-height: 1.85;
+}
+
+.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+
+.btn-primary {
+  background: var(--oliva-oscuro);
+  color: var(--pergamino);
+  padding: 13px 30px;
+  border-radius: 2px;
+  font-size: 12px; font-weight: 500;
+  text-decoration: none;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  transition: all 0.2s;
+  border: 1.5px solid var(--oliva-oscuro);
+  display: inline-block;
+}
+.btn-primary:hover {
+  background: var(--oliva-profundo);
+  border-color: var(--oliva-profundo);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--oliva-oscuro);
+  padding: 13px 30px;
+  border-radius: 2px;
+  font-size: 12px; font-weight: 500;
+  text-decoration: none;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  border: 1.5px solid var(--oliva-medio);
+  transition: all 0.2s;
+  display: inline-block;
+}
+.btn-outline:hover {
+  background: var(--oliva-claro);
+  border-color: var(--oliva-vivo);
+  color: var(--oliva-profundo);
+}
+
+.hero-stats {
+  display: flex; gap: 36px;
+  margin-top: 52px;
+  padding-top: 36px;
+  border-top: 1px solid var(--pergamino-oscuro);
+}
+.stat-label {
+  font-size: 10px; font-weight: 500;
+  color: var(--texto-claro);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.stat-val {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 600;
+  color: var(--oliva-oscuro);
+  line-height: 1.1;
+}
+
+/* Tarjeta visual hero */
+.hero-card {
+  background: var(--blanco);
+  border-radius: 4px;
+  padding: 36px;
+  border: 1px solid var(--pergamino-oscuro);
+  box-shadow: var(--sombra-lg);
+  position: relative;
+}
+.hero-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--oliva-oscuro), var(--oliva-vivo), var(--tierra));
+  border-radius: 4px 4px 0 0;
+}
+
+.hero-card-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 24px;
+}
+.hero-card-title {
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--texto-claro);
+}
+.hero-card-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--oliva-vivo);
+  box-shadow: 0 0 0 3px rgba(155,163,74,0.2);
+}
+
+.hero-map-area {
+  background: linear-gradient(135deg, #E8E5D0 0%, #DDD9C0 50%, #E2DFC8 100%);
+  border-radius: 3px;
+  height: 200px;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 10px;
+  margin-bottom: 24px;
+  position: relative; overflow: hidden;
+}
+.hero-map-area::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: 
+    repeating-linear-gradient(0deg, transparent, transparent 24px, rgba(92,97,48,0.06) 24px, rgba(92,97,48,0.06) 25px),
+    repeating-linear-gradient(90deg, transparent, transparent 24px, rgba(92,97,48,0.06) 24px, rgba(92,97,48,0.06) 25px);
+}
+.map-icon { position: relative; z-index: 1; }
+.map-label {
+  font-size: 12px; font-weight: 500;
+  color: var(--oliva-oscuro);
+  position: relative; z-index: 1;
+  letter-spacing: 0.3px;
+}
+.map-sub {
+  font-size: 11px; font-weight: 300;
+  color: var(--texto-claro);
+  position: relative; z-index: 1;
+}
+
+.hero-chips {
+  display: flex; flex-wrap: wrap; gap: 8px;
+}
+.chip {
+  background: var(--pergamino);
+  border: 1px solid var(--pergamino-oscuro);
+  border-radius: 2px;
+  padding: 5px 12px;
+  font-size: 11px; font-weight: 400;
+  color: var(--texto-medio);
+  letter-spacing: 0.3px;
+}
+.chip-oliva {
+  background: rgba(155,163,74,0.12);
+  border-color: rgba(155,163,74,0.35);
+  color: var(--oliva-oscuro);
+}
+.chip-pizarra {
+  background: rgba(74,110,122,0.1);
+  border-color: rgba(74,110,122,0.3);
+  color: var(--pizarra);
+}
+
+/* ─── SECCIONES BASE ─── */
+section { padding: 96px 8%; }
+
+.section-tag {
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--tierra);
+  margin-bottom: 10px;
+  display: block;
+}
+
+h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 46px; font-weight: 600;
+  color: var(--oliva-profundo);
+  margin-bottom: 16px;
+  line-height: 1.12;
+  letter-spacing: -0.3px;
+}
+h2 em { color: var(--oliva-vivo); font-style: italic; }
+
+.section-header {
+  max-width: 580px;
+  margin: 0 auto 60px;
+  text-align: center;
+}
+.section-header p {
+  font-size: 15px; font-weight: 300;
+  color: var(--texto-medio);
+  margin-top: 14px; line-height: 1.85;
+}
+
+/* ─── SOBRE NOSOTROS ─── */
+#sobre { background: var(--blanco); }
+
+.sobre-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.7fr;
+  gap: 80px; align-items: start;
+  max-width: 1140px; margin: 0 auto;
+}
+
+.sobre-visual-wrap { position: relative; }
+
+.sobre-logo-display {
+  background: linear-gradient(145deg, var(--oliva-profundo) 0%, var(--oliva-oscuro) 100%);
+  border-radius: 4px;
+  height: 400px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.sobre-logo-display::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: 
+    repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(255,255,255,0.03) 40px, rgba(255,255,255,0.03) 41px),
+    repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(255,255,255,0.03) 40px, rgba(255,255,255,0.03) 41px);
+}
+
+.sobre-badge {
+  position: absolute;
+  bottom: -18px; right: -18px;
+  background: var(--blanco);
+  border: 1px solid var(--pergamino-oscuro);
+  border-radius: 3px;
+  padding: 16px 20px;
+  box-shadow: var(--sombra-md);
+}
+.sobre-badge-title {
+  font-size: 13px; font-weight: 500;
+  color: var(--texto);
+}
+.sobre-badge-sub {
+  font-size: 11px; font-weight: 300;
+  color: var(--texto-claro);
+  margin-top: 3px;
+}
+
+.sobre-texto { padding-top: 4px; }
+.sobre-texto p {
+  font-size: 15px; font-weight: 300;
+  color: var(--texto-medio);
+  margin-bottom: 18px;
+  line-height: 1.9;
+}
+.sobre-texto strong { color: var(--texto); font-weight: 500; }
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px; margin-top: 32px;
+}
+.skill-item {
+  display: flex; align-items: flex-start; gap: 10px;
+  background: var(--pergamino);
+  border: 1px solid var(--pergamino-oscuro);
+  border-radius: 3px;
+  padding: 12px 14px;
+}
+.skill-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--oliva-vivo);
+  margin-top: 7px; flex-shrink: 0;
+}
+.skill-text {
+  font-size: 13px; font-weight: 400;
+  color: var(--texto-medio);
+}
+
+/* ─── SERVICIOS ─── */
+#servicios { background: var(--pergamino); }
+
+.servicios-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1140px; margin: 0 auto;
+}
+
+.servicio-card {
+  background: var(--blanco);
+  border-radius: 3px;
+  padding: 32px 28px;
+  border: 1px solid var(--pergamino-oscuro);
+  transition: all 0.3s;
+  position: relative; overflow: hidden;
+}
+.servicio-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--oliva-oscuro), var(--oliva-vivo));
+  transform: scaleX(0);
+  transition: transform 0.3s;
+}
+.servicio-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--sombra-md);
+  border-color: var(--oliva-claro);
+}
+.servicio-card:hover::after { transform: scaleX(1); }
+
+.serv-icon {
+  width: 46px; height: 46px;
+  border-radius: 3px;
+  background: rgba(155,163,74,0.12);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 20px;
+}
+.serv-icon svg { width: 20px; height: 20px; }
+
+.serv-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px; font-weight: 600;
+  color: var(--oliva-profundo);
+  margin-bottom: 10px;
+  line-height: 1.25;
+}
+.serv-desc {
+  font-size: 13px; font-weight: 300;
+  color: var(--texto-medio);
+  line-height: 1.8;
+}
+.serv-tags {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  margin-top: 18px;
+}
+.serv-tag {
+  background: var(--pergamino);
+  border: 1px solid var(--pergamino-oscuro);
+  border-radius: 2px;
+  padding: 4px 10px;
+  font-size: 10px; font-weight: 500;
+  color: var(--texto-claro);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* ─── CLIENTES ─── */
+#clientes { background: var(--blanco); }
+
+.clientes-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  max-width: 1140px; margin: 0 auto;
+}
+
+.cliente-card {
+  background: var(--pergamino);
+  border-radius: 3px;
+  padding: 28px 22px;
+  text-align: center;
+  border: 1px solid var(--pergamino-oscuro);
+  transition: all 0.25s;
+}
+.cliente-card:hover {
+  background: rgba(155,163,74,0.08);
+  border-color: var(--oliva-claro);
+  transform: translateY(-2px);
+  box-shadow: var(--sombra-sm);
+}
+.cliente-icono { font-size: 28px; margin-bottom: 14px; }
+.cliente-tipo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px; font-weight: 600;
+  color: var(--oliva-profundo);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+.cliente-desc {
+  font-size: 12px; font-weight: 300;
+  color: var(--texto-claro);
+  line-height: 1.65;
+}
+
+/* ─── GEOMÁTICA ─── */
+#geomatica {
+  background: var(--oliva-profundo);
+  position: relative; overflow: hidden;
+}
+#geomatica::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: 
+    repeating-linear-gradient(0deg, transparent, transparent 48px, rgba(255,255,255,0.025) 48px, rgba(255,255,255,0.025) 49px),
+    repeating-linear-gradient(90deg, transparent, transparent 48px, rgba(255,255,255,0.025) 48px, rgba(255,255,255,0.025) 49px);
+}
+
+.geo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
+  max-width: 1140px; margin: 0 auto;
+  position: relative; z-index: 1;
+}
+
+.geo-eyebrow {
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--oliva-claro);
+  margin-bottom: 12px; display: block;
+}
+.geo-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 44px; font-weight: 600;
+  color: var(--pergamino);
+  margin-bottom: 18px;
+  line-height: 1.12;
+}
+.geo-desc {
+  font-size: 15px; font-weight: 300;
+  color: rgba(245,242,224,0.68);
+  margin-bottom: 32px;
+  line-height: 1.85;
+}
+.geo-items { display: flex; flex-direction: column; gap: 13px; }
+.geo-item { display: flex; align-items: center; gap: 12px; }
+.geo-bullet {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--oliva-claro);
+  flex-shrink: 0;
+}
+.geo-item-text {
+  font-size: 14px; font-weight: 300;
+  color: rgba(245,242,224,0.78);
+}
+
+.geo-visual {
+  background: rgba(245,242,224,0.06);
+  border-radius: 3px;
+  padding: 28px;
+  border: 1px solid rgba(245,242,224,0.12);
+}
+.geo-visual-header {
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  color: rgba(245,242,224,0.4);
+  margin-bottom: 18px;
+}
+.geo-layers { display: flex; flex-direction: column; gap: 9px; }
+.geo-layer {
+  display: flex; align-items: center; gap: 12px;
+  background: rgba(245,242,224,0.05);
+  border-radius: 2px;
+  padding: 11px 15px;
+  border: 1px solid rgba(245,242,224,0.08);
+  transition: background 0.2s;
+}
+.geo-layer:hover { background: rgba(245,242,224,0.09); }
+.layer-color {
+  width: 10px; height: 10px;
+  border-radius: 2px; flex-shrink: 0;
+}
+.layer-name {
+  font-size: 13px; font-weight: 300;
+  color: rgba(245,242,224,0.78);
+}
+.layer-type {
+  font-size: 10px; font-weight: 400;
+  color: rgba(245,242,224,0.35);
+  margin-left: auto;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* ─── CONTACTO ─── */
+#contacto { background: var(--pergamino); }
+
+.contacto-wrap { max-width: 720px; margin: 0 auto; }
+
+.contacto-form {
+  background: var(--blanco);
+  border-radius: 4px;
+  padding: 48px;
+  border: 1px solid var(--pergamino-oscuro);
+  box-shadow: var(--sombra-sm);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.form-group { display: flex; flex-direction: column; gap: 7px; }
+.form-group.full { grid-column: 1 / -1; }
+
+label {
+  font-size: 10px; font-weight: 500;
+  color: var(--texto-medio);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+input, select, textarea {
+  border: 1.5px solid var(--pergamino-oscuro);
+  border-radius: 2px;
+  padding: 12px 14px;
+  font-size: 14px; font-weight: 300;
+  color: var(--texto);
+  font-family: 'DM Sans', sans-serif;
+  background: var(--pergamino);
+  transition: border-color 0.2s, background 0.2s;
+  outline: none;
+  width: 100%;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: var(--oliva-medio);
+  background: var(--blanco);
+}
+textarea { resize: vertical; min-height: 120px; }
+
+.form-submit {
+  background: var(--oliva-oscuro);
+  color: var(--pergamino);
+  border: none; border-radius: 2px;
+  padding: 15px 32px;
+  font-size: 12px; font-weight: 500;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  cursor: pointer; width: 100%;
+  margin-top: 8px;
+  transition: background 0.2s, transform 0.2s;
+  font-family: 'DM Sans', sans-serif;
+}
+.form-submit:hover { background: var(--oliva-profundo); transform: translateY(-1px); }
+.form-submit:disabled { background: var(--texto-claro); cursor: not-allowed; transform: none; }
+
+.form-note {
+  font-size: 11px; font-weight: 300;
+  color: var(--texto-claro);
+  text-align: center;
+  margin-top: 12px;
+  letter-spacing: 0.3px;
+}
+
+.form-error {
+  display: none;
+  background: #fff0f0;
+  border: 1px solid #ffd0d0;
+  border-radius: 2px;
+  padding: 14px; margin-top: 12px;
+  font-size: 13px; color: #c0392b;
+  text-align: center;
+}
+
+.form-success {
+  display: none;
+  text-align: center;
+  padding: 48px;
+}
+.form-success .check {
+  width: 56px; height: 56px;
+  background: rgba(155,163,74,0.12);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 18px;
+}
+.form-success h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 30px; color: var(--oliva-oscuro);
+  margin-bottom: 10px;
+}
+.form-success p {
+  font-size: 14px; font-weight: 300;
+  color: var(--texto-medio);
+}
+
+.contacto-info {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px; margin-top: 24px;
+}
+.info-item {
+  background: var(--blanco);
+  border-radius: 3px;
+  padding: 20px; text-align: center;
+  border: 1px solid var(--pergamino-oscuro);
+}
+.info-icon {
+  width: 38px; height: 38px;
+  background: rgba(155,163,74,0.1);
+  border-radius: 50%;
+  margin: 0 auto 10px;
+  display: flex; align-items: center; justify-content: center;
+}
+.info-icon svg { width: 16px; height: 16px; }
+.info-label {
+  font-size: 10px; font-weight: 500;
+  color: var(--texto-claro);
+  text-transform: uppercase; letter-spacing: 1.5px;
+  margin-bottom: 5px;
+}
+.info-val {
+  font-size: 13px; font-weight: 400;
+  color: var(--texto);
+}
+.info-val a {
+  color: var(--texto);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.info-val a:hover { color: var(--oliva-oscuro); }
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--oliva-profundo);
+  color: rgba(245,242,224,0.6);
+  padding: 56px 8% 32px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 56px;
+  max-width: 1140px; margin: 0 auto 44px;
+}
+
+.footer-logo-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px; font-weight: 600;
+  color: var(--oliva-claro);
+  line-height: 1.15;
+}
+.footer-logo-sub {
+  font-size: 9px; font-weight: 400;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: rgba(245,242,224,0.3);
+  margin-top: 2px;
+}
+.footer-desc {
+  font-size: 13px; font-weight: 300;
+  color: rgba(245,242,224,0.42);
+  margin-top: 16px; line-height: 1.8;
+  max-width: 300px;
+}
+
+.footer-col h4 {
+  font-size: 10px; font-weight: 500;
+  color: rgba(245,242,224,0.9);
+  margin-bottom: 18px;
+  letter-spacing: 2.5px; text-transform: uppercase;
+}
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+.footer-col ul a {
+  font-size: 13px; font-weight: 300;
+  color: rgba(245,242,224,0.42);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-col ul a:hover { color: var(--oliva-claro); }
+
+.footer-bottom {
+  border-top: 1px solid rgba(245,242,224,0.08);
+  padding-top: 24px;
+  display: flex; justify-content: space-between; align-items: center;
+  max-width: 1140px; margin: 0 auto;
+  flex-wrap: wrap; gap: 8px;
+}
+.footer-bottom span {
+  font-size: 11px; font-weight: 300;
+  color: rgba(245,242,224,0.22);
+  letter-spacing: 0.3px;
+}
+
+/* ─── LOGO SVG INLINE ─── */
+.logo-svg-mark { flex-shrink: 0; }
+
+/* ─── DIVIDER ─── */
+.section-divider {
+  width: 40px; height: 2px;
+  background: linear-gradient(90deg, var(--oliva-vivo), var(--tierra));
+  margin-bottom: 24px;
+}
+
+/* ══════════════════════════════
+   RESPONSIVE — TABLET ≤ 960px
+══════════════════════════════ */
+@media (max-width: 960px) {
+  nav { padding: 0 5%; }
+  .nav-links { display: none; }
+  .nav-cta { display: none; }
+  .nav-hamburger { display: flex; }
+
+  .hero-grid { grid-template-columns: 1fr; gap: 44px; }
+  .hero-card { display: none; }
+  h1 { font-size: 44px; }
+  h2 { font-size: 36px; }
+  #inicio { padding: 110px 6% 72px; min-height: auto; }
+  .hero-stats { flex-wrap: wrap; gap: 24px; margin-top: 36px; }
+
+  .sobre-grid { grid-template-columns: 1fr; gap: 44px; }
+  .sobre-logo-display { height: 260px; }
+  .sobre-badge { position: static; margin-top: 16px; }
+
+  .servicios-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .clientes-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .geo-grid { grid-template-columns: 1fr; gap: 44px; }
+  .geo-title { font-size: 36px; }
+
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+  .footer-grid > div:first-child { grid-column: 1 / -1; }
+
+  .contacto-info { grid-template-columns: repeat(3, 1fr); }
+  section { padding: 76px 6%; }
+  #sobre { padding: 76px 6%; }
+  .sobre-badge { display: none; }
+}
+
+/* ══════════════════════════════
+   RESPONSIVE — MÓVIL ≤ 640px
+══════════════════════════════ */
+@media (max-width: 640px) {
+  h1 { font-size: 34px; }
+  h2 { font-size: 28px; }
+  .geo-title { font-size: 30px; }
+
+  #inicio { padding: 96px 5% 60px; }
+  section { padding: 60px 5%; }
+  #sobre { padding: 60px 5%; }
+
+  .hero-stats { gap: 20px; }
+  .hero-btns { flex-direction: column; }
+  .btn-primary, .btn-outline { width: 100%; text-align: center; }
+
+  .servicios-grid { grid-template-columns: 1fr; gap: 12px; }
+  .clientes-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+
+  .skills-grid { grid-template-columns: 1fr; gap: 8px; }
+
+  .contacto-form { padding: 24px 18px; }
+  .form-grid { grid-template-columns: 1fr; }
+  .form-group.full { grid-column: 1; }
+  .contacto-info { grid-template-columns: 1fr; gap: 10px; }
+
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+
+  .section-header { margin-bottom: 40px; }
+  .hero-stats { flex-direction: column; gap: 14px; }
+  .stat-val { font-size: 18px; }
+}
+
+/* ══════════════════════════════
+   RESPONSIVE — MÓVIL PEQUEÑO ≤ 400px
+══════════════════════════════ */
+@media (max-width: 400px) {
+  h1 { font-size: 28px; }
+  h2 { font-size: 25px; }
+  nav { height: 62px; padding: 0 4%; }
+  .mobile-menu { top: 62px; }
+  .nav-logo-name { font-size: 16px; }
+  #inicio { padding: 82px 4% 52px; }
+  section { padding: 52px 4%; }
+  .clientes-grid { grid-template-columns: 1fr; }
+  .servicio-card { padding: 24px 18px; }
+  .contacto-form { padding: 20px 14px; }
+}
+
+/* ─── ANIMACIONES ENTRADA ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up { opacity: 0; }
+.fade-up.visible {
+  animation: fadeUp 0.65s ease forwards;
+}
 </style>
 </head>
 <body>
@@ -266,120 +985,175 @@
 <!-- ══════════════════════════════════
      NAVEGACIÓN
 ══════════════════════════════════ -->
-<nav>
+<nav id="main-nav">
   <a href="#inicio" class="nav-logo">
-    <!-- LOGO SVG -->
-    <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="19" cy="19" r="19" fill="#2D6A4F"/>
-      <!-- Tallo central -->
-      <line x1="19" y1="32" x2="19" y2="14" stroke="#D8F3DC" stroke-width="1.8" stroke-linecap="round"/>
-      <!-- Hoja izquierda -->
-      <path d="M19 22 C14 20 10 14 12 9 C14 13 17 18 19 22Z" fill="#74C69D"/>
-      <!-- Hoja derecha -->
-      <path d="M19 18 C24 16 28 10 26 6 C24 10 21 15 19 18Z" fill="#B5C99A"/>
-      <!-- Hoja pequeña izquierda -->
-      <path d="M19 14 C16 13 13 10 14 7 C15 9 17 12 19 14Z" fill="#40916C"/>
-      <!-- Raíces / territorio -->
-      <path d="M14 32 Q19 29 24 32" stroke="#B5C99A" stroke-width="1.4" stroke-linecap="round" fill="none"/>
-      <path d="M11 34 Q19 30 27 34" stroke="#74C69D" stroke-width="1" stroke-linecap="round" fill="none" opacity="0.6"/>
+    <!-- Logo Atlas Ambiental: planeta + árbol + raíces tecnológicas + satélite -->
+    <svg class="logo-svg-mark" width="40" height="40" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Círculo exterior / planeta -->
+      <circle cx="40" cy="40" r="34" stroke="#5C6130" stroke-width="2.2" fill="none"/>
+      <!-- Órbita satelital -->
+      <ellipse cx="40" cy="40" rx="48" ry="18" stroke="#7A8040" stroke-width="1.6" fill="none" transform="rotate(-25 40 40)"/>
+      <!-- Satélite -->
+      <g transform="rotate(-25 40 40) translate(82, 36)">
+        <rect x="-5" y="-4" width="10" height="8" rx="1.5" fill="#9BA34A"/>
+        <rect x="-10" y="-2" width="5" height="4" rx="1" fill="#5C6130"/>
+        <rect x="5" y="-2" width="5" height="4" rx="1" fill="#5C6130"/>
+      </g>
+      <!-- Montañas (acento pizarra) -->
+      <path d="M16 56 L24 42 L30 50 L36 38 L44 56Z" fill="#4A6E7A" opacity="0.7"/>
+      <!-- Tronco árbol -->
+      <path d="M40 62 L40 38" stroke="#3B3D1E" stroke-width="3" stroke-linecap="round"/>
+      <path d="M40 52 L34 46" stroke="#3B3D1E" stroke-width="2" stroke-linecap="round"/>
+      <path d="M40 46 L46 40" stroke="#3B3D1E" stroke-width="2" stroke-linecap="round"/>
+      <!-- Hojas -->
+      <circle cx="40" cy="30" r="10" fill="#7A8040" opacity="0.9"/>
+      <circle cx="33" cy="35" r="8" fill="#9BA34A" opacity="0.85"/>
+      <circle cx="47" cy="34" r="7.5" fill="#5C6130" opacity="0.9"/>
+      <circle cx="38" cy="25" r="7" fill="#C8D080" opacity="0.75"/>
+      <!-- Raíces tecnológicas -->
+      <path d="M40 62 L32 70" stroke="#8B6914" stroke-width="1.6" stroke-linecap="round"/>
+      <path d="M40 62 L48 70" stroke="#8B6914" stroke-width="1.6" stroke-linecap="round"/>
+      <path d="M40 66 L40 72" stroke="#8B6914" stroke-width="1.6" stroke-linecap="round"/>
+      <circle cx="32" cy="70" r="2.5" fill="none" stroke="#8B6914" stroke-width="1.4"/>
+      <circle cx="48" cy="70" r="2.5" fill="none" stroke="#8B6914" stroke-width="1.4"/>
+      <circle cx="40" cy="73" r="2" fill="#8B6914" opacity="0.7"/>
     </svg>
-    <div>
-      <div class="logo-text">Savia Territorial</div>
-      <div class="logo-sub">Consultoría Ambiental</div>
+    <div class="nav-logo-text">
+      <span class="nav-logo-name">Atlas Ambiental</span>
+      <span class="nav-logo-sub">Consultora · Córdoba, Argentina</span>
     </div>
   </a>
+
   <ul class="nav-links">
-    <li><a href="#sobre">Sobre mí</a></li>
+    <li><a href="#sobre">Nosotros</a></li>
     <li><a href="#servicios">Servicios</a></li>
     <li><a href="#geomatica">Geomática</a></li>
     <li><a href="#clientes">Clientes</a></li>
   </ul>
-  <a href="#contacto" class="nav-cta">Contactar</a>
+
+  <a href="#contacto" class="nav-cta">Contacto</a>
+
   <button class="nav-hamburger" id="nav-hamburger" aria-label="Menú" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </nav>
+
 <div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Menú móvil">
-  <a href="#sobre" class="mobile-link">Sobre mí</a>
+  <a href="#sobre" class="mobile-link">Nosotros</a>
   <a href="#servicios" class="mobile-link">Servicios</a>
   <a href="#geomatica" class="mobile-link">Geomática</a>
   <a href="#clientes" class="mobile-link">Clientes</a>
-  <a href="#contacto" class="mobile-link mobile-cta">Contactar</a>
+  <a href="#contacto" class="mobile-link">Contacto</a>
 </div>
+
 
 <!-- ══════════════════════════════════
      HERO
 ══════════════════════════════════ -->
 <section id="inicio">
-  <div class="hero-bg-circle"></div>
+  <div class="hero-grain"></div>
+  <div class="hero-accent-circle"></div>
+
   <div class="hero-grid">
     <div>
-      <div class="hero-badge">Consultoría ambiental · Córdoba, Argentina</div>
-      <h1>Gestión ambiental <span>con visión territorial</span></h1>
-      <p class="hero-desc">Acompañamos a empresas, municipios y comunas, productores rurales y organizaciones a tomar decisiones basadas en evidencia y geomática aplicada al territorio.</p>
+      <div class="hero-eyebrow">Consultora Ambiental · Córdoba, Argentina</div>
+      <h1>Ciencia aplicada <em>al territorio</em></h1>
+      <p class="hero-desc">Consultora ambiental multidisciplinar con especialización en geomática. Acompañamos a empresas, municipios, productores rurales y organizaciones con soluciones basadas en datos y análisis territorial de precisión.</p>
       <div class="hero-btns">
         <a href="#contacto" class="btn-primary">Consultá tu proyecto</a>
         <a href="#servicios" class="btn-outline">Ver servicios</a>
       </div>
       <div class="hero-stats">
-        <div class="stat-item"><div class="stat-num">SIG</div><div class="stat-label">Análisis territorial</div></div>
-        <div class="stat-item"><div class="stat-num">EIA</div><div class="stat-label">Evaluación de Impacto Ambiental</div></div>
-        <div class="stat-item"><div class="stat-num">Normativa</div><div class="stat-label">Gestión ambiental</div></div>
+        <div class="stat-item">
+          <div class="stat-label">Especialidad</div>
+          <div class="stat-val">SIG · Geomática</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">Servicio</div>
+          <div class="stat-val">EIA · Bosque</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">Alcance</div>
+          <div class="stat-val">Argentina</div>
+        </div>
       </div>
     </div>
-    <div class="hero-visual">
-      <div class="hero-map-placeholder">
-        <svg width="58" height="58" viewBox="0 0 60 60" fill="none">
-          <rect x="5" y="5" width="50" height="50" rx="8" fill="rgba(45,106,79,0.15)" stroke="#2D6A4F" stroke-width="1.5"/>
-          <circle cx="30" cy="28" r="8" fill="rgba(45,106,79,0.28)" stroke="#2D6A4F" stroke-width="1.5"/>
-          <path d="M30 20v-6M30 42v-6M20 28h-6M46 28h-6" stroke="#2D6A4F" stroke-width="1.5" stroke-linecap="round"/>
-          <circle cx="18" cy="18" r="3" fill="#40916C"/>
-          <circle cx="42" cy="38" r="3" fill="#40916C"/>
-          <circle cx="38" cy="16" r="2" fill="#74C69D"/>
+
+    <div class="hero-card">
+      <div class="hero-card-header">
+        <span class="hero-card-title">Análisis territorial activo</span>
+        <span class="hero-card-dot"></span>
+      </div>
+      <div class="hero-map-area">
+        <svg class="map-icon" width="52" height="52" viewBox="0 0 60 60" fill="none">
+          <rect x="6" y="6" width="48" height="48" rx="6" fill="rgba(92,97,48,0.12)" stroke="#5C6130" stroke-width="1.5"/>
+          <circle cx="30" cy="28" r="7" fill="rgba(92,97,48,0.2)" stroke="#5C6130" stroke-width="1.5"/>
+          <path d="M30 21v-5M30 40v-5M21 28h-5M44 28h-5" stroke="#5C6130" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="18" cy="18" r="3" fill="#7A8040"/>
+          <circle cx="42" cy="38" r="3" fill="#7A8040"/>
+          <circle cx="40" cy="16" r="2" fill="#9BA34A"/>
+          <circle cx="20" cy="42" r="2" fill="#8B6914"/>
         </svg>
-        <div class="hero-map-label">Gestión Ambiental · Córdoba, Argentina</div>
-        <div class="hero-map-sub">Convirtiendo datos satelitales en decisiones territoriales</div>
+        <div class="map-label">Córdoba · Argentina</div>
+        <div class="map-sub">Del dato satelital a la decisión territorial</div>
       </div>
       <div class="hero-chips">
-        <span class="chip chip-green">Bosque nativo</span>
-        <span class="chip chip-green">Huella de Carbono</span>
+        <span class="chip chip-oliva">Bosque nativo</span>
+        <span class="chip chip-oliva">Huella de Carbono</span>
+        <span class="chip chip-pizarra">Teledetección</span>
         <span class="chip">Ordenamiento territorial</span>
-        <span class="chip">Áreas naturales protegidas</span>
-        <span class="chip chip-green">Teledetección</span>
+        <span class="chip">Áreas protegidas</span>
+        <span class="chip chip-oliva">SIG aplicado</span>
       </div>
     </div>
   </div>
 </section>
 
+
 <!-- ══════════════════════════════════
-     SOBRE MÍ
+     SOBRE NOSOTROS
 ══════════════════════════════════ -->
-<section id="sobre" style="padding:100px 8%;">
+<section id="sobre">
   <div class="sobre-grid">
-    <div class="sobre-foto-wrap">
-      <div class="sobre-foto">
-        <!-- Logo grande centrado en lugar de foto -->
-        <svg width="130" height="130" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="19" cy="19" r="19" fill="#2D6A4F" opacity="0.15"/>
-          <line x1="19" y1="34" x2="19" y2="12" stroke="#2D6A4F" stroke-width="2" stroke-linecap="round"/>
-          <path d="M19 24 C11 21 6 12 9 5 C12 12 16 20 19 24Z" fill="#74C69D"/>
-          <path d="M19 19 C27 16 32 7 29 1 C26 8 22 15 19 19Z" fill="#B5C99A"/>
-          <path d="M19 14 C15 13 11 9 12 4 C14 7 17 11 19 14Z" fill="#40916C"/>
-          <path d="M12 34 Q19 30 26 34" stroke="#B5C99A" stroke-width="1.8" stroke-linecap="round" fill="none"/>
-          <path d="M8 36 Q19 31 30 36" stroke="#74C69D" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.6"/>
+    <div class="sobre-visual-wrap fade-up">
+      <div class="sobre-logo-display">
+        <!-- Logo grande sobre fondo oscuro -->
+        <svg width="160" height="160" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="40" cy="40" r="34" stroke="rgba(200,208,128,0.5)" stroke-width="1.8" fill="none"/>
+          <ellipse cx="40" cy="40" rx="48" ry="18" stroke="rgba(200,208,128,0.35)" stroke-width="1.4" fill="none" transform="rotate(-25 40 40)"/>
+          <g transform="rotate(-25 40 40) translate(82, 36)">
+            <rect x="-5" y="-4" width="10" height="8" rx="1.5" fill="#9BA34A"/>
+            <rect x="-10" y="-2" width="5" height="4" rx="1" fill="#C8D080"/>
+            <rect x="5" y="-2" width="5" height="4" rx="1" fill="#C8D080"/>
+          </g>
+          <path d="M16 56 L24 42 L30 50 L36 38 L44 56Z" fill="#4A6E7A" opacity="0.6"/>
+          <path d="M40 62 L40 38" stroke="rgba(200,208,128,0.8)" stroke-width="3" stroke-linecap="round"/>
+          <path d="M40 52 L34 46" stroke="rgba(200,208,128,0.6)" stroke-width="2" stroke-linecap="round"/>
+          <path d="M40 46 L46 40" stroke="rgba(200,208,128,0.6)" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="40" cy="30" r="10" fill="#7A8040"/>
+          <circle cx="33" cy="35" r="8" fill="#9BA34A"/>
+          <circle cx="47" cy="34" r="7.5" fill="#5C6130"/>
+          <circle cx="38" cy="25" r="7" fill="#C8D080" opacity="0.8"/>
+          <path d="M40 62 L32 70" stroke="#8B6914" stroke-width="1.6" stroke-linecap="round"/>
+          <path d="M40 62 L48 70" stroke="#8B6914" stroke-width="1.6" stroke-linecap="round"/>
+          <path d="M40 66 L40 72" stroke="#8B6914" stroke-width="1.6" stroke-linecap="round"/>
+          <circle cx="32" cy="70" r="2.5" fill="none" stroke="#8B6914" stroke-width="1.4"/>
+          <circle cx="48" cy="70" r="2.5" fill="none" stroke="#8B6914" stroke-width="1.4"/>
+          <circle cx="40" cy="73" r="2" fill="#8B6914"/>
         </svg>
       </div>
       <div class="sobre-badge">
-        <div class="sobre-badge-title">Lic. en Gestión Ambiental</div>
-        <div class="sobre-badge-sub">Especialista en Geomática Aplicada · SIG y Teledetección</div>
+        <div class="sobre-badge-title">Consultora multidisciplinar</div>
+        <div class="sobre-badge-sub">Geomática · SIG · Teledetección · Normativa ambiental</div>
       </div>
     </div>
-    <div class="sobre-texto">
-      <div class="section-tag">Quién soy</div>
-      <h2>Experta en territorio, <em>apasionada por el ambiente</em></h2>
-      <p>Soy Licenciada en Gestión Ambiental con especialización en Geomática Aplicada (SIG y teledetección), radicada en Córdoba. Trabajo en la vinculación entre el análisis territorial de precisión y la gestión ambiental estratégica.</p>
-      <p>Mi enfoque es <strong>personalizado</strong>: cada proyecto es un territorio con sus propias lógicas, actores y desafíos. Combino rigor científico con una mirada integral que contempla lo ambiental, lo social y lo productivo.</p>
-      <p>Trabajo de manera interdisciplinaria en conjunto con gobiernos locales, productores rurales, industrias y organizaciones de la sociedad civil en toda la región centro de Argentina.</p>
+
+    <div class="sobre-texto fade-up">
+      <span class="section-tag">Quiénes somos</span>
+      <div class="section-divider"></div>
+      <h2>Territorio y ambiente, <em>con rigor científico</em></h2>
+      <p>Atlas Ambiental es una consultora ambiental multidisciplinar con base en Córdoba, Argentina, pero con alcance regional y nacional. Nuestro equipo combina <strong>precisión técnica en geomática</strong> con una mirada integral del territorio que contempla lo ambiental, lo social y lo productivo.</p>
+      <p>Trabajamos de forma interdisciplinaria con gobiernos locales, productores rurales, industrias y organizaciones de la sociedad civil en todo el país. <strong>Cada proyecto es único</strong> y recibe una propuesta a medida.</p>
       <div class="skills-grid">
         <div class="skill-item"><div class="skill-dot"></div><div class="skill-text">SIG y cartografía ambiental</div></div>
         <div class="skill-item"><div class="skill-dot"></div><div class="skill-text">Evaluación de Impacto Ambiental</div></div>
@@ -387,235 +1161,214 @@
         <div class="skill-item"><div class="skill-dot"></div><div class="skill-text">Huella de Carbono</div></div>
         <div class="skill-item"><div class="skill-dot"></div><div class="skill-text">Teledetección satelital</div></div>
         <div class="skill-item"><div class="skill-dot"></div><div class="skill-text">Normativa ambiental</div></div>
+        <div class="skill-item"><div class="skill-dot"></div><div class="skill-text">Arbolado urbano</div></div>
+        <div class="skill-item"><div class="skill-dot"></div><div class="skill-text">Educación ambiental</div></div>
       </div>
     </div>
   </div>
 </section>
 
+
 <!-- ══════════════════════════════════
      SERVICIOS
 ══════════════════════════════════ -->
 <section id="servicios">
-  <div class="section-header">
-    <div class="section-tag">Lo que hago</div>
+  <div class="section-header fade-up">
+    <span class="section-tag">Lo que hacemos</span>
     <h2>Servicios <em>ambientales</em> integrales</h2>
-    <p>Soluciones a medida para cada tipo de cliente y territorio, con base en geomática y normativa ambiental vigente.</p>
+    <p>Soluciones técnicas a medida para cada tipo de cliente y territorio, con base en geomática, análisis territorial y normativa ambiental vigente.</p>
   </div>
+
   <div class="servicios-grid">
-    <div class="servicio-card">
-      <div class="serv-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#2D6A4F" stroke-width="1.8"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+    <div class="servicio-card fade-up">
+      <div class="serv-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#5C6130" stroke-width="1.8"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      </div>
       <div class="serv-title">Evaluación de Impacto Ambiental</div>
       <div class="serv-desc">Elaboración de EIA y manifiestos ambientales para proyectos productivos, industriales e infraestructura. Tramitación ante organismos provinciales.</div>
-      <div class="serv-tags"><span class="serv-tag">Empresas</span><span class="serv-tag">Industria</span><span class="serv-tag">Residuos</span></div>
+      <div class="serv-tags">
+        <span class="serv-tag">Empresas</span>
+        <span class="serv-tag">Industria</span>
+        <span class="serv-tag">Residuos</span>
+      </div>
     </div>
-    <div class="servicio-card">
-      <div class="serv-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#2D6A4F" stroke-width="1.8"><path d="M17 8C8 10 5.9 16.17 3.82 19.5M9 16c0-5 4-9 8-9M21 8a9 9 0 01-9 13"/></svg></div>
+
+    <div class="servicio-card fade-up">
+      <div class="serv-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#5C6130" stroke-width="1.8"><path d="M17 8C8 10 5.9 16.17 3.82 19.5M9 16c0-5 4-9 8-9M21 8a9 9 0 01-9 13"/></svg>
+      </div>
       <div class="serv-title">Gestión de Bosque Nativo</div>
       <div class="serv-desc">Planes de manejo y conservación bajo Ley 9.814. Relevamiento con SIG y teledetección. Acompañamiento a productores para cumplimiento normativo y acceso a compensaciones.</div>
-      <div class="serv-tags"><span class="serv-tag">Gestión rural</span><span class="serv-tag">Ley 9.814</span><span class="serv-tag">Conservación</span></div>
+      <div class="serv-tags">
+        <span class="serv-tag">Ley 9.814</span>
+        <span class="serv-tag">Gestión rural</span>
+        <span class="serv-tag">Conservación</span>
+      </div>
     </div>
-    <div class="servicio-card">
-      <div class="serv-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#2D6A4F" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+
+    <div class="servicio-card fade-up">
+      <div class="serv-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#5C6130" stroke-width="1.8"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+      </div>
       <div class="serv-title">Huella de Carbono</div>
-      <div class="serv-desc">Cálculo de la huella de carbono organizacional y de eventos. Acompañamiento institucional para reducir y compensar la huella de carbono. Elaboración de informes técnicos y presentación ante organismos provinciales. Acompañamiento en procesos de certificación.</div>
-      <div class="serv-tags"><span class="serv-tag">ISO</span><span class="serv-tag">GHG Protocol</span><span class="serv-tag">IPCC</span></div>
+      <div class="serv-desc">Cálculo de huella de carbono organizacional y de eventos. Informes técnicos, presentación ante organismos, acompañamiento en reducción y certificación bajo ISO y GHG Protocol.</div>
+      <div class="serv-tags">
+        <span class="serv-tag">ISO</span>
+        <span class="serv-tag">GHG Protocol</span>
+        <span class="serv-tag">IPCC</span>
+      </div>
     </div>
-    <div class="servicio-card">
-      <div class="serv-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#2D6A4F" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+
+    <div class="servicio-card fade-up">
+      <div class="serv-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#5C6130" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
       <div class="serv-title">Asesoramiento a Municipios y Comunas</div>
-      <div class="serv-desc">Planes ambientales municipales, ordenanzas, gestión de RSU y economía circular. Fortalecimiento de capacidades institucionales locales.</div>
-      <div class="serv-tags"><span class="serv-tag">Municipios</span><span class="serv-tag">Comunas</span><span class="serv-tag">Residuos</span></div>
+      <div class="serv-desc">Planes ambientales municipales, ordenanzas, gestión de RSU y economía circular. Cartografía ambiental y fortalecimiento de capacidades institucionales locales.</div>
+      <div class="serv-tags">
+        <span class="serv-tag">Municipios</span>
+        <span class="serv-tag">Comunas</span>
+        <span class="serv-tag">Residuos</span>
+      </div>
     </div>
-    <div class="servicio-card">
-      <div class="serv-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#2D6A4F" stroke-width="1.8"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+
+    <div class="servicio-card fade-up">
+      <div class="serv-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#5C6130" stroke-width="1.8"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
       <div class="serv-title">Gestión de Residuos</div>
-      <div class="serv-desc">Diagnósticos y planes de gestión de residuos para empresas y gobiernos locales. Estrategias de economía circular y valorización.</div>
-      <div class="serv-tags"><span class="serv-tag">Empresas</span><span class="serv-tag">Gobiernos locales</span><span class="serv-tag">Circular</span></div>
+      <div class="serv-desc">Diagnósticos y planes de gestión de residuos para empresas y gobiernos locales. Estrategias de economía circular, valorización y minimización de impactos.</div>
+      <div class="serv-tags">
+        <span class="serv-tag">Empresas</span>
+        <span class="serv-tag">Gobiernos locales</span>
+        <span class="serv-tag">Circular</span>
+      </div>
     </div>
-    <div class="servicio-card">
-      <div class="serv-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#2D6A4F" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
-      <div class="serv-title">Consultoría para OSC</div>
-      <div class="serv-desc">Acompañamiento técnico a organizaciones civiles en proyectos ambientales, formulación de propuestas para financiamiento y participación en gestión pública.</div>
-      <div class="serv-tags"><span class="serv-tag">OSC</span><span class="serv-tag">Proyectos</span><span class="serv-tag">Financiamiento</span></div>
+
+    <div class="servicio-card fade-up">
+      <div class="serv-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#5C6130" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+      </div>
+      <div class="serv-title">Consultoría para OSC y Educación Ambiental</div>
+      <div class="serv-desc">Acompañamiento técnico a organizaciones civiles, formulación de propuestas para financiamiento y educación ambiental. Participación en gestión pública y territorial.</div>
+      <div class="serv-tags">
+        <span class="serv-tag">OSC</span>
+        <span class="serv-tag">Proyectos</span>
+        <span class="serv-tag">Educación</span>
+      </div>
     </div>
   </div>
 </section>
+
 
 <!-- ══════════════════════════════════
      CLIENTES
 ══════════════════════════════════ -->
 <section id="clientes">
-  <div class="section-header">
-    <div class="section-tag">Con quiénes trabajo</div>
+  <div class="section-header fade-up">
+    <span class="section-tag">Con quiénes trabajamos</span>
     <h2>Clientes y <em>sectores</em></h2>
   </div>
   <div class="clientes-grid">
-    <div class="cliente-card"><div class="cliente-icono">🌾</div><div class="cliente-tipo">Propietarios rurales</div><div class="cliente-desc">Gestión de bosque nativo, planes de manejo y cumplimiento Ley 9.814</div></div>
-    <div class="cliente-card"><div class="cliente-icono">🏭</div><div class="cliente-tipo">Industrias y empresas</div><div class="cliente-desc">EIA, auditorías, ISO 14001 y gestión ambiental corporativa</div></div>
-    <div class="cliente-card"><div class="cliente-icono">🏛️</div><div class="cliente-tipo">Municipios y Comunas</div><div class="cliente-desc">Planes ambientales, residuos sólidos y fortalecimiento institucional</div></div>
-    <div class="cliente-card"><div class="cliente-icono">🤝</div><div class="cliente-tipo">Organizaciones de la sociedad civil</div><div class="cliente-desc">Proyectos ambientales, formulación de propuestas y gestión territorial</div></div>
+    <div class="cliente-card fade-up">
+      <div class="cliente-icono">🌾</div>
+      <div class="cliente-tipo">Propietarios rurales</div>
+      <div class="cliente-desc">Gestión de bosque nativo, planes de manejo y cumplimiento Ley 9.814</div>
+    </div>
+    <div class="cliente-card fade-up">
+      <div class="cliente-icono">🏭</div>
+      <div class="cliente-tipo">Industrias y empresas</div>
+      <div class="cliente-desc">EIA, auditorías, ISO 14001, huella de carbono y gestión ambiental corporativa</div>
+    </div>
+    <div class="cliente-card fade-up">
+      <div class="cliente-icono">🏛️</div>
+      <div class="cliente-tipo">Municipios y Comunas</div>
+      <div class="cliente-desc">Planes ambientales, residuos sólidos, arbolado urbano y fortalecimiento institucional</div>
+    </div>
+    <div class="cliente-card fade-up">
+      <div class="cliente-icono">🤝</div>
+      <div class="cliente-tipo">Organizaciones civiles</div>
+      <div class="cliente-desc">Proyectos ambientales, formulación de propuestas, gestión territorial y educación</div>
+    </div>
   </div>
 </section>
+
 
 <!-- ══════════════════════════════════
      GEOMÁTICA
 ══════════════════════════════════ -->
 <section id="geomatica">
   <div class="geo-grid">
-    <div>
-      <div class="geo-tag">Diferencial</div>
-      <div class="geo-title">Geomática aplicada al territorio</div>
-      <div class="geo-desc">Mi especialización en SIG y teledetección me permite ofrecer análisis espaciales precisos que potencian la toma de decisiones ambientales.</div>
+    <div class="fade-up">
+      <span class="geo-eyebrow">Diferencial técnico</span>
+      <div class="geo-title">Geomática aplicada<br>al territorio</div>
+      <div class="geo-desc">La especialización en SIG y teledetección nos permite ofrecer análisis espaciales precisos que potencian la toma de decisiones ambientales. Del dato satelital a la acción concreta en el territorio.</div>
       <div class="geo-items">
         <div class="geo-item"><div class="geo-bullet"></div><div class="geo-item-text">Mapeo de cobertura vegetal y uso del suelo</div></div>
         <div class="geo-item"><div class="geo-bullet"></div><div class="geo-item-text">Análisis multitemporal de cambios del bosque</div></div>
-        <div class="geo-item"><div class="geo-bullet"></div><div class="geo-item-text">Cartografía ambiental</div></div>
-        <div class="geo-item"><div class="geo-bullet"></div><div class="geo-item-text">Monitoreo satelital</div></div>
+        <div class="geo-item"><div class="geo-bullet"></div><div class="geo-item-text">Cartografía ambiental de precisión</div></div>
+        <div class="geo-item"><div class="geo-bullet"></div><div class="geo-item-text">Monitoreo satelital continuo</div></div>
         <div class="geo-item"><div class="geo-bullet"></div><div class="geo-item-text">Análisis de datos geoespaciales</div></div>
+        <div class="geo-item"><div class="geo-bullet"></div><div class="geo-item-text">Generación de cartografía para municipios</div></div>
       </div>
     </div>
-    <div class="geo-visual" style="background:transparent;border:none;padding:0;">
-      <svg width="100%" viewBox="0 0 680 580" role="img" xmlns="http://www.w3.org/2000/svg">
-        <title>Capas SIG – Savia Territorial</title>
-        <desc>Diagrama de capas SIG estilo flat ilustración con perspectiva isométrica</desc>
-        <defs>
-          <clipPath id="c1"><path d="M222,30 L482,30 Q488,30 492,34 L560,88 Q564,91 564,96 L304,96 Q298,96 294,92 L226,38 Q222,35 222,30 Z"/></clipPath>
-          <clipPath id="c2"><path d="M202,126 L462,126 Q468,126 472,130 L540,184 Q544,187 544,192 L284,192 Q278,192 274,188 L206,134 Q202,131 202,126 Z"/></clipPath>
-          <clipPath id="c3"><path d="M182,226 L442,226 Q448,226 452,230 L520,284 Q524,287 524,292 L264,292 Q258,292 254,288 L186,234 Q182,231 182,226 Z"/></clipPath>
-          <clipPath id="c4"><path d="M162,326 L422,326 Q428,326 432,330 L500,384 Q504,387 504,392 L244,392 Q238,392 234,388 L166,334 Q162,331 162,326 Z"/></clipPath>
-          <clipPath id="c5"><path d="M142,426 L402,426 Q408,426 412,430 L480,484 Q484,487 484,492 L224,492 Q218,492 214,488 L146,434 Q142,431 142,426 Z"/></clipPath>
-        </defs>
 
-        <!-- CAPA 1 — VECTORIAL -->
-        <path d="M222,34 L482,34 Q488,34 492,38 L560,92 Q564,95 564,100 L304,100 Q298,100 294,96 L226,42 Q222,39 222,34 Z" fill="rgba(0,0,0,0.09)" transform="translate(3,4)"/>
-        <path d="M222,30 L482,30 Q488,30 492,34 L560,88 Q564,91 564,96 L304,96 Q298,96 294,92 L226,38 Q222,35 222,30 Z" fill="#E57373"/>
-        <g clip-path="url(#c1)">
-          <rect x="220" y="28" width="345" height="78" fill="#EF5350"/>
-          <circle cx="280" cy="52" r="5" fill="#fff" opacity="0.9"/><circle cx="340" cy="44" r="5" fill="#fff" opacity="0.9"/>
-          <circle cx="390" cy="62" r="5" fill="#fff" opacity="0.9"/><circle cx="450" cy="50" r="5" fill="#fff" opacity="0.9"/>
-          <circle cx="500" cy="70" r="5" fill="#fff" opacity="0.9"/>
-          <line x1="280" y1="52" x2="340" y2="44" stroke="#fff" stroke-width="1.5" opacity="0.7" stroke-dasharray="5 3"/>
-          <line x1="340" y1="44" x2="390" y2="62" stroke="#fff" stroke-width="1.5" opacity="0.7" stroke-dasharray="5 3"/>
-          <line x1="390" y1="62" x2="450" y2="50" stroke="#fff" stroke-width="1.5" opacity="0.7" stroke-dasharray="5 3"/>
-          <line x1="450" y1="50" x2="500" y2="70" stroke="#fff" stroke-width="1.5" opacity="0.7" stroke-dasharray="5 3"/>
-          <circle cx="300" cy="78" r="3.5" fill="#FFCDD2" opacity="0.8"/><circle cx="360" cy="72" r="3.5" fill="#FFCDD2" opacity="0.8"/>
-          <circle cx="420" cy="82" r="3.5" fill="#FFCDD2" opacity="0.8"/><circle cx="480" cy="76" r="3.5" fill="#FFCDD2" opacity="0.8"/>
-        </g>
-        <path d="M222,30 L482,30 Q488,30 492,34 L560,88 Q564,91 564,96 L304,96 Q298,96 294,92 L226,38 Q222,35 222,30 Z" fill="none" stroke="#C62828" stroke-width="1.8"/>
-        <path d="M222,30 L226,38 L294,92 L304,96 L304,104 L236,50 L222,38 Z" fill="#C62828" opacity="0.35"/>
-        <path d="M304,96 L564,96 L564,104 L304,104 Z" fill="#C62828" opacity="0.2"/>
-        <line x1="304" y1="104" x2="564" y2="104" stroke="#C62828" stroke-width="0.7" opacity="0.4"/>
-
-        <!-- CAPA 2 — ÁREAS PROTEGIDAS -->
-        <path d="M202,130 L462,130 Q468,130 472,134 L540,188 Q544,191 544,196 L284,196 Q278,196 274,192 L206,138 Q202,135 202,130 Z" fill="rgba(0,0,0,0.09)" transform="translate(3,4)"/>
-        <path d="M202,126 L462,126 Q468,126 472,130 L540,184 Q544,187 544,192 L284,192 Q278,192 274,188 L206,134 Q202,131 202,126 Z" fill="#66BB6A"/>
-        <g clip-path="url(#c2)">
-          <rect x="200" y="124" width="345" height="78" fill="#4CAF50"/>
-          <polygon points="215,130 290,126 310,150 270,168 215,160" fill="#A5D6A7" opacity="0.6"/>
-          <polygon points="420,126 520,130 530,160 460,172 400,155" fill="#C8E6C9" opacity="0.55"/>
-          <g transform="translate(350,148)">
-            <path d="M0,-18 Q10,-18 10,-8 Q10,2 0,18 Q-10,2 -10,-8 Q-10,-18 0,-18 Z" fill="#fff" opacity="0.9"/>
-            <circle cx="0" cy="-8" r="5" fill="#4CAF50"/>
-          </g>
-          <g transform="translate(440,148)">
-            <path d="M0,-14 Q8,-14 8,-6 Q8,2 0,14 Q-8,2 -8,-6 Q-8,-14 0,-14 Z" fill="#fff" opacity="0.8"/>
-            <circle cx="0" cy="-6" r="4" fill="#388E3C"/>
-          </g>
-          <g transform="translate(280,162)">
-            <path d="M0,-12 Q7,-12 7,-5 Q7,2 0,12 Q-7,2 -7,-5 Q-7,-12 0,-12 Z" fill="#fff" opacity="0.75"/>
-            <circle cx="0" cy="-5" r="3.5" fill="#2E7D32"/>
-          </g>
-        </g>
-        <path d="M202,126 L462,126 Q468,126 472,130 L540,184 Q544,187 544,192 L284,192 Q278,192 274,188 L206,134 Q202,131 202,126 Z" fill="none" stroke="#2E7D32" stroke-width="1.8"/>
-        <path d="M202,126 L206,134 L274,188 L284,192 L284,200 L216,146 L202,134 Z" fill="#2E7D32" opacity="0.35"/>
-        <path d="M284,192 L544,192 L544,200 L284,200 Z" fill="#2E7D32" opacity="0.2"/>
-        <line x1="284" y1="200" x2="544" y2="200" stroke="#2E7D32" stroke-width="0.7" opacity="0.4"/>
-
-        <!-- CAPA 3 — RECURSOS HÍDRICOS -->
-        <path d="M182,230 L442,230 Q448,230 452,234 L520,288 Q524,291 524,296 L264,296 Q258,296 254,292 L186,238 Q182,235 182,230 Z" fill="rgba(0,0,0,0.09)" transform="translate(3,4)"/>
-        <path d="M182,226 L442,226 Q448,226 452,230 L520,284 Q524,287 524,292 L264,292 Q258,292 254,288 L186,234 Q182,231 182,226 Z" fill="#4FC3F7"/>
-        <g clip-path="url(#c3)">
-          <rect x="180" y="224" width="345" height="78" fill="#29B6F6"/>
-          <ellipse cx="280" cy="255" rx="45" ry="22" fill="#0288D1" opacity="0.55"/>
-          <ellipse cx="430" cy="260" rx="55" ry="18" fill="#0277BD" opacity="0.45"/>
-          <path d="M220,248 Q270,240 320,255 Q380,272 440,258 Q490,246 520,262" fill="none" stroke="#01579B" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
-          <path d="M240,270 Q290,264 340,275" fill="none" stroke="#0288D1" stroke-width="2" stroke-linecap="round" opacity="0.65"/>
-          <path d="M380,268 Q430,260 480,272" fill="none" stroke="#0288D1" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
-        </g>
-        <path d="M182,226 L442,226 Q448,226 452,230 L520,284 Q524,287 524,292 L264,292 Q258,292 254,288 L186,234 Q182,231 182,226 Z" fill="none" stroke="#0277BD" stroke-width="1.8"/>
-        <path d="M182,226 L186,234 L254,288 L264,292 L264,300 L196,246 L182,234 Z" fill="#0277BD" opacity="0.35"/>
-        <path d="M264,292 L524,292 L524,300 L264,300 Z" fill="#0277BD" opacity="0.2"/>
-        <line x1="264" y1="300" x2="524" y2="300" stroke="#0277BD" stroke-width="0.7" opacity="0.4"/>
-
-        <!-- CAPA 4 — USO DE SUELO -->
-        <path d="M162,330 L422,330 Q428,330 432,334 L500,388 Q504,391 504,396 L244,396 Q238,396 234,392 L166,338 Q162,335 162,330 Z" fill="rgba(0,0,0,0.09)" transform="translate(3,4)"/>
-        <path d="M162,326 L422,326 Q428,326 432,330 L500,384 Q504,387 504,392 L244,392 Q238,392 234,388 L166,334 Q162,331 162,326 Z" fill="#FFF176"/>
-        <g clip-path="url(#c4)">
-          <rect x="160" y="324" width="345" height="78" fill="#FFEE58"/>
-          <polygon points="168,330 260,326 290,350 240,368 170,362" fill="#A5D6A7" opacity="0.75"/>
-          <polygon points="275,326 380,326 410,350 370,370 255,365" fill="#FFCC02" opacity="0.7"/>
-          <polygon points="400,328 490,330 505,355 470,372 390,368" fill="#FF8A65" opacity="0.7"/>
-          <polygon points="175,360 255,356 270,378 230,395 168,390" fill="#CE93D8" opacity="0.65"/>
-          <polygon points="275,362 380,357 400,378 355,395 260,390" fill="#80DEEA" opacity="0.65"/>
-          <polygon points="410,365 490,360 500,385 465,395 400,390" fill="#FFAB40" opacity="0.65"/>
-        </g>
-        <path d="M162,326 L422,326 Q428,326 432,330 L500,384 Q504,387 504,392 L244,392 Q238,392 234,388 L166,334 Q162,331 162,326 Z" fill="none" stroke="#F9A825" stroke-width="1.8"/>
-        <path d="M162,326 L166,334 L234,388 L244,392 L244,400 L176,346 L162,334 Z" fill="#F9A825" opacity="0.35"/>
-        <path d="M244,392 L504,392 L504,400 L244,400 Z" fill="#F9A825" opacity="0.2"/>
-        <line x1="244" y1="400" x2="504" y2="400" stroke="#F9A825" stroke-width="0.7" opacity="0.4"/>
-
-        <!-- CAPA 5 — RELIEVE / TOPOGRAFÍA -->
-        <path d="M142,430 L402,430 Q408,430 412,434 L480,488 Q484,491 484,496 L224,496 Q218,496 214,492 L146,438 Q142,435 142,430 Z" fill="rgba(0,0,0,0.09)" transform="translate(3,4)"/>
-        <path d="M142,426 L402,426 Q408,426 412,430 L480,484 Q484,487 484,492 L224,492 Q218,492 214,488 L146,434 Q142,431 142,426 Z" fill="#A5D6A7"/>
-        <g clip-path="url(#c5)">
-          <rect x="140" y="424" width="345" height="78" fill="#81C784"/>
-          <path d="M160,460 Q200,444 250,452 Q310,462 360,448 Q410,436 460,450 Q490,458 505,468" fill="none" stroke="#2E7D32" stroke-width="1.8" opacity="0.5"/>
-          <path d="M155,472 Q200,460 255,468 Q315,478 365,464 Q415,452 465,464 Q490,472 505,480" fill="none" stroke="#388E3C" stroke-width="1.5" opacity="0.45"/>
-          <path d="M158,482 Q210,474 265,480 Q325,488 375,476 Q425,464 470,476" fill="none" stroke="#43A047" stroke-width="1.2" opacity="0.4"/>
-          <ellipse cx="320" cy="452" rx="70" ry="22" fill="#FF8A65" opacity="0.35"/>
-          <ellipse cx="320" cy="452" rx="45" ry="14" fill="#FF7043" opacity="0.3"/>
-          <ellipse cx="320" cy="452" rx="25" ry="8" fill="#BF360C" opacity="0.28"/>
-          <ellipse cx="195" cy="472" rx="35" ry="14" fill="#29B6F6" opacity="0.3"/>
-        </g>
-        <path d="M142,426 L402,426 Q408,426 412,430 L480,484 Q484,487 484,492 L224,492 Q218,492 214,488 L146,434 Q142,431 142,426 Z" fill="none" stroke="#388E3C" stroke-width="1.8"/>
-        <path d="M142,426 L146,434 L214,488 L224,492 L224,500 L156,446 L142,434 Z" fill="#2E7D32" opacity="0.35"/>
-        <path d="M224,492 L484,492 L484,500 L224,500 Z" fill="#2E7D32" opacity="0.2"/>
-        <line x1="224" y1="500" x2="484" y2="500" stroke="#2E7D32" stroke-width="0.7" opacity="0.4"/>
-
-        <!-- ETIQUETAS -->
-        <line x1="600" y1="63" x2="600" y2="462" stroke="rgba(255,255,255,0.2)" stroke-width="1" stroke-dasharray="3 4"/>
-        <line x1="564" y1="63" x2="594" y2="63" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
-        <circle cx="597" cy="63" r="3" fill="#E57373"/>
-        <text x="606" y="68" font-family="'Cormorant Garamond', Georgia, serif" font-size="15" font-weight="600" fill="rgba(255,255,255,0.9)">Vectorial</text>
-        <line x1="544" y1="159" x2="594" y2="159" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
-        <circle cx="597" cy="159" r="3" fill="#66BB6A"/>
-        <text x="606" y="164" font-family="'Cormorant Garamond', Georgia, serif" font-size="15" font-weight="600" fill="rgba(255,255,255,0.9)">Áreas protegidas</text>
-        <line x1="524" y1="259" x2="594" y2="259" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
-        <circle cx="597" cy="259" r="3" fill="#4FC3F7"/>
-        <text x="606" y="264" font-family="'Cormorant Garamond', Georgia, serif" font-size="15" font-weight="600" fill="rgba(255,255,255,0.9)">Hidrografía</text>
-        <line x1="504" y1="359" x2="594" y2="359" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
-        <circle cx="597" cy="359" r="3" fill="#FDD835" stroke="#F9A825" stroke-width="1"/>
-        <text x="606" y="364" font-family="'Cormorant Garamond', Georgia, serif" font-size="15" font-weight="600" fill="rgba(255,255,255,0.9)">Uso de suelo</text>
-        <line x1="484" y1="459" x2="594" y2="459" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
-        <circle cx="597" cy="459" r="3" fill="#81C784"/>
-        <text x="606" y="464" font-family="'Cormorant Garamond', Georgia, serif" font-size="15" font-weight="600" fill="rgba(255,255,255,0.9)">Relieve</text>
-      </svg>
+    <div class="geo-visual fade-up">
+      <div class="geo-visual-header">Capas de análisis SIG</div>
+      <div class="geo-layers">
+        <div class="geo-layer">
+          <div class="layer-color" style="background:#9BA34A"></div>
+          <div class="layer-name">NDVI · Índice de vegetación</div>
+          <div class="layer-type">Raster</div>
+        </div>
+        <div class="geo-layer">
+          <div class="layer-color" style="background:#4A6E7A"></div>
+          <div class="layer-name">Recursos hídricos</div>
+          <div class="layer-type">Vectorial</div>
+        </div>
+        <div class="geo-layer">
+          <div class="layer-color" style="background:#7A8040"></div>
+          <div class="layer-name">Áreas naturales protegidas</div>
+          <div class="layer-type">Polígono</div>
+        </div>
+        <div class="geo-layer">
+          <div class="layer-color" style="background:#C8D080"></div>
+          <div class="layer-name">Usos del suelo</div>
+          <div class="layer-type">Raster</div>
+        </div>
+        <div class="geo-layer">
+          <div class="layer-color" style="background:#8B6914"></div>
+          <div class="layer-name">Red vial e infraestructura</div>
+          <div class="layer-type">Línea</div>
+        </div>
+        <div class="geo-layer">
+          <div class="layer-color" style="background:#5C6130"></div>
+          <div class="layer-name">Bosque nativo Ley 9.814</div>
+          <div class="layer-type">Polígono</div>
+        </div>
+        <div class="geo-layer">
+          <div class="layer-color" style="background:#6B8F9C"></div>
+          <div class="layer-name">Límites jurisdiccionales</div>
+          <div class="layer-type">Vectorial</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
+
 <!-- ══════════════════════════════════
-     CONTACTO + FORMULARIO
-     Conectado a Google Sheets via Apps Script
+     CONTACTO
 ══════════════════════════════════ -->
 <section id="contacto">
-  <div class="section-header">
-    <div class="section-tag">Hablemos</div>
+  <div class="section-header fade-up">
+    <span class="section-tag">Hablemos</span>
     <h2>¿Tenés un proyecto <em>ambiental</em>?</h2>
-    <p>Contame de qué se trata y te cuento cómo puedo ayudarte. Sin compromisos.</p>
+    <p>Contanos de qué se trata y te decimos cómo podemos ayudarte. Sin compromisos.</p>
   </div>
+
   <div class="contacto-wrap">
-    <div class="contacto-form">
+    <div class="contacto-form fade-up">
       <div id="form-fields">
         <div class="form-grid">
           <div class="form-group">
@@ -651,60 +1404,62 @@
               <option value="">Seleccioná...</option>
               <option>Evaluación de Impacto Ambiental</option>
               <option>Gestión de bosque nativo</option>
+              <option>Huella de Carbono</option>
               <option>Auditoría ambiental</option>
               <option>Asesoramiento a municipios/comunas</option>
               <option>Gestión de residuos</option>
               <option>Análisis SIG / Geomática</option>
+              <option>Arbolado urbano</option>
+              <option>Educación ambiental</option>
               <option>Consultoría para OSC</option>
               <option>No sé, necesito orientación</option>
             </select>
           </div>
           <div class="form-group full">
-            <label for="mensaje">Contame de tu proyecto *</label>
-            <textarea id="mensaje" name="mensaje" placeholder="Describí brevemente tu situación o necesidad. Cuanto más detalle, mejor podré orientarte." required></textarea>
+            <label for="mensaje">Contanos de tu proyecto *</label>
+            <textarea id="mensaje" name="mensaje" placeholder="Describí brevemente tu situación o necesidad. Cuanto más detalle, mejor podremos orientarte." required></textarea>
           </div>
         </div>
-        <div class="form-error" id="form-error">Hubo un error al enviar. Por favor intentá de nuevo o escribime directamente a m.sosa.ambiente@gmail.com</div>
+        <div class="form-error" id="form-error">Hubo un error al enviar. Por favor intentá de nuevo o escribinos directamente a atlasambientalcba@gmail.com</div>
         <button class="form-submit" id="btn-submit" onclick="enviarFormulario()">Enviar consulta</button>
         <p class="form-note">Respondemos en menos de 48 horas hábiles · Tu información es confidencial</p>
       </div>
-      <div class="form-sending" id="form-sending">
-        <p style="color:var(--texto-medio);font-size:14px;">Enviando tu consulta...</p>
-      </div>
-      <div class="form-success" id="form-success">
+
+      <div id="form-success" class="form-success">
         <div class="check">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2D6A4F" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5C6130" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
         <h3>¡Consulta enviada!</h3>
-        <p>Gracias por escribirnos. Nos pondremos en contacto en las próximas 48 horas hábiles a tu email.</p>
+        <p>Gracias por escribirnos. Nos pondremos en contacto en las próximas 48 horas hábiles.</p>
       </div>
     </div>
 
     <div class="contacto-info">
       <div class="info-item">
         <div class="info-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#2D6A4F" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#5C6130" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
         </div>
         <div class="info-label">Ubicación</div>
         <div class="info-val">Córdoba, Argentina</div>
       </div>
       <div class="info-item">
         <div class="info-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#2D6A4F" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12 19.79 19.79 0 011.61 3.38 2 2 0 013.58 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.56a16 16 0 005.64 5.64l1.63-1.63a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#5C6130" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12 19.79 19.79 0 011.61 3.38 2 2 0 013.58 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.56a16 16 0 005.64 5.64l1.63-1.63a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
         </div>
         <div class="info-label">WhatsApp</div>
         <div class="info-val"><a href="https://wa.me/543516984811" target="_blank">351 698-4811</a></div>
       </div>
       <div class="info-item">
         <div class="info-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#2D6A4F" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#5C6130" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         </div>
         <div class="info-label">Email</div>
-        <div class="info-val"><a href="mailto:m.sosa.ambiente@gmail.com">m.sosa.ambiente@gmail.com</a></div>
+        <div class="info-val"><a href="mailto:atlasambientalcba@gmail.com">atlasambientalcba@gmail.com</a></div>
       </div>
     </div>
   </div>
 </section>
+
 
 <!-- ══════════════════════════════════
      FOOTER
@@ -712,65 +1467,63 @@
 <footer>
   <div class="footer-grid">
     <div>
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
-        <svg width="32" height="32" viewBox="0 0 38 38" fill="none">
-          <circle cx="19" cy="19" r="19" fill="rgba(116,198,157,0.2)"/>
-          <line x1="19" y1="32" x2="19" y2="14" stroke="#74C69D" stroke-width="1.8" stroke-linecap="round"/>
-          <path d="M19 24 C14 22 10 15 12 9 C14 14 17 20 19 24Z" fill="#74C69D"/>
-          <path d="M19 19 C24 17 28 10 26 5 C24 10 21 15 19 19Z" fill="#B5C99A"/>
-          <path d="M13 34 Q19 30 25 34" stroke="#B5C99A" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:4px;">
+        <svg width="34" height="34" viewBox="0 0 80 80" fill="none">
+          <circle cx="40" cy="40" r="34" stroke="rgba(200,208,128,0.4)" stroke-width="1.8" fill="none"/>
+          <ellipse cx="40" cy="40" rx="48" ry="18" stroke="rgba(200,208,128,0.25)" stroke-width="1.2" fill="none" transform="rotate(-25 40 40)"/>
+          <path d="M16 56 L24 42 L30 50 L36 38 L44 56Z" fill="#4A6E7A" opacity="0.5"/>
+          <path d="M40 62 L40 38" stroke="rgba(200,208,128,0.7)" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="40" cy="30" r="10" fill="#7A8040" opacity="0.8"/>
+          <circle cx="33" cy="35" r="8" fill="#9BA34A" opacity="0.7"/>
+          <circle cx="47" cy="34" r="7.5" fill="#5C6130" opacity="0.8"/>
+          <path d="M40 62 L32 70" stroke="#8B6914" stroke-width="1.4" stroke-linecap="round"/>
+          <path d="M40 62 L48 70" stroke="#8B6914" stroke-width="1.4" stroke-linecap="round"/>
         </svg>
         <div>
-          <div class="footer-logo-text">Savia Territorial</div>
-          <div class="footer-logo-sub">Consultoría Ambiental</div>
+          <div class="footer-logo-name">Atlas Ambiental</div>
+          <div class="footer-logo-sub">Consultora · Córdoba, Argentina</div>
         </div>
       </div>
-      <div class="footer-desc">Consultoría ambiental con base en geomática aplicada. Córdoba, Argentina. Trabajamos en toda la región centro del país.</div>
+      <div class="footer-desc">Consultora ambiental multidisciplinar con base en geomática aplicada. Córdoba, Argentina. Trabajamos en todo el país.</div>
     </div>
+
     <div class="footer-col">
       <h4>Servicios</h4>
       <ul>
         <li><a href="#servicios">Evaluación de impacto</a></li>
         <li><a href="#servicios">Bosque nativo</a></li>
-        <li><a href="#servicios">Gobiernos locales</a></li>
+        <li><a href="#servicios">Huella de Carbono</a></li>
+        <li><a href="#servicios">Municipios y Comunas</a></li>
         <li><a href="#geomatica">Geomática SIG</a></li>
       </ul>
     </div>
+
     <div class="footer-col">
       <h4>Contacto</h4>
       <ul>
         <li><a href="#contacto">Formulario de consulta</a></li>
         <li><a href="https://wa.me/543516984811" target="_blank">WhatsApp 351 698-4811</a></li>
-        <li><a href="mailto:m.sosa.ambiente@gmail.com">m.sosa.ambiente@gmail.com</a></li>
-        <li><a href="#sobre">Sobre mí</a></li>
+        <li><a href="mailto:atlasambientalcba@gmail.com">atlasambientalcba@gmail.com</a></li>
+        <li><a href="#sobre">Sobre nosotros</a></li>
       </ul>
     </div>
   </div>
+
   <div class="footer-bottom">
-    <span>© 2025 Savia Territorial · Consultoría Ambiental · Córdoba, Argentina</span>
-    <span>Lic. en Gestión Ambiental · Especialista en Geomática</span>
+    <span>© 2026 Atlas Ambiental · Consultora Ambiental · Córdoba, Argentina</span>
+    <span>Ciencia aplicada al territorio</span>
   </div>
 </footer>
 
+
 <!-- ══════════════════════════════════
-     JAVASCRIPT: FORMULARIO → GOOGLE SHEETS
-     
-     INSTRUCCIONES PARA ACTIVAR:
-     1. Abrí Google Sheets en drive.google.com
-     2. Creá una planilla nueva llamada "Consultas Savia Territorial"
-     3. Agregá estos encabezados en la fila 1:
-        A: Fecha | B: Nombre | C: Email | D: Teléfono | E: Tipo | F: Organización | G: Servicio | H: Mensaje
-     4. Menú Extensiones → Apps Script
-     5. Borrá el contenido y pegá el código del archivo "apps-script.gs"
-     6. Guardá, hacé clic en "Implementar" → "Nueva implementación"
-     7. Tipo: Aplicación web | Ejecutar como: Yo | Acceso: Cualquier persona
-     8. Copiá la URL de implementación
-     9. En este archivo, reemplazá PEGA_AQUI_TU_URL_DE_APPS_SCRIPT con esa URL
+     JAVASCRIPT
 ══════════════════════════════════ -->
 <script>
-  // ⚠️ REEMPLAZÁ ESTA URL con la tuya de Google Apps Script (ver instrucciones arriba)
+  // ── Google Apps Script URL ──
   const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxTndbD1yM2LoVKOh2UmRgnnRBKBnkAUKPDW9deuNV-yH7lVitciWIosfjP8wS4swTsGQ/exec';
 
+  // ── Formulario ──
   async function enviarFormulario() {
     const nombre  = document.getElementById('nombre').value.trim();
     const email   = document.getElementById('email').value.trim();
@@ -792,19 +1545,10 @@
       fecha    : new Date().toLocaleString('es-AR', { timeZone: 'America/Argentina/Cordoba' })
     };
 
-    // Mostrar estado enviando
-    document.getElementById('btn-submit').disabled = true;
-    document.getElementById('btn-submit').textContent = 'Enviando...';
+    const btn = document.getElementById('btn-submit');
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
     document.getElementById('form-error').style.display = 'none';
-
-    // Si no hay URL configurada, mostrar éxito local (modo demo)
-    if (APPS_SCRIPT_URL === 'PEGA_AQUI_TU_URL_DE_APPS_SCRIPT') {
-      setTimeout(() => {
-        document.getElementById('form-fields').style.display = 'none';
-        document.getElementById('form-success').style.display = 'block';
-      }, 800);
-      return;
-    }
 
     try {
       const formData = new FormData();
@@ -818,14 +1562,21 @@
 
       document.getElementById('form-fields').style.display = 'none';
       document.getElementById('form-success').style.display = 'block';
-
-    } catch (error) {
-      document.getElementById('btn-submit').disabled = false;
-      document.getElementById('btn-submit').textContent = 'Enviar consulta';
+    } catch (err) {
+      btn.disabled = false;
+      btn.textContent = 'Enviar consulta';
       document.getElementById('form-error').style.display = 'block';
     }
   }
 
+  // Enviar con Enter en inputs
+  document.querySelectorAll('input').forEach(input => {
+    input.addEventListener('keypress', e => {
+      if (e.key === 'Enter') enviarFormulario();
+    });
+  });
+
+  // ── Menú hamburguesa ──
   const hamburger = document.getElementById('nav-hamburger');
   const mobileMenu = document.getElementById('mobile-menu');
 
@@ -837,26 +1588,46 @@
   }
 
   hamburger.addEventListener('click', () => {
-    const isOpen = mobileMenu.classList.contains('open');
-    toggleMenu(!isOpen);
+    toggleMenu(!mobileMenu.classList.contains('open'));
   });
 
   document.querySelectorAll('.mobile-link').forEach(link => {
     link.addEventListener('click', () => toggleMenu(false));
   });
 
-  document.addEventListener('click', (e) => {
+  document.addEventListener('click', e => {
     if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
       toggleMenu(false);
     }
   });
 
-  // Permitir enviar con Enter en campos de texto
-  document.querySelectorAll('input').forEach(input => {
-    input.addEventListener('keypress', e => {
-      if (e.key === 'Enter') enviarFormulario();
+  // ── Nav shadow on scroll ──
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
+
+  // ── Animaciones de entrada (Intersection Observer) ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        // Delay escalonado para hijos de grids
+        const siblings = entry.target.parentElement?.querySelectorAll('.fade-up');
+        let delay = 0;
+        if (siblings && siblings.length > 1) {
+          siblings.forEach((el, idx) => {
+            if (el === entry.target) delay = idx * 80;
+          });
+        }
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, delay);
+        observer.unobserve(entry.target);
+      }
     });
-  });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
 
 </body>
